@@ -34,7 +34,7 @@ class Liczba
             void ustawPoczWartoscMantysy();
             void ustawPoczWartoscZnaku();
     
-            string setLiczba();
+            void setLiczba();
             void setZnak(bool z);
             void setCecha(string c);
             void setMantysa(string m);

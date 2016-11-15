@@ -44,9 +44,10 @@ Zespolone Zespolone::odejmij(Zespolone x)
 }
 Zespolone Zespolone::iloczyn(Zespolone x)
 {
-   
-    Liczba wynikR=rzeczywista.mnozenie(x.getRzeczywista());
-    wynikR=wynikR.odejmij(urojona.mnozenie(x.getUrojona()));
+    Liczba rz=rzeczywista;
+    Liczba ur=urojona;
+    Liczba wynikR=rz.mnozenie(x.getRzeczywista());
+    wynikR.odejmij(ur.mnozenie(x.getUrojona()));
     Liczba wynikU=urojona.mnozenie(x.getRzeczywista());
     wynikU=wynikU.dodaj(rzeczywista.mnozenie(x.getUrojona()));
     

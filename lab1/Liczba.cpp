@@ -16,7 +16,7 @@ Liczba::Liczba(string c,string m, bool z)
     setCecha(c);
     setMantysa(m);
     setZnak(z);
-    liczba=setLiczba();
+    setLiczba();
 }
 Liczba::Liczba()
 {
@@ -92,23 +92,27 @@ Liczba Liczba::mnozenie(Liczba x)
 }
 ////Prywatne
 
-string Liczba::setLiczba()
+void Liczba::setLiczba()
 {
-    string z="";
-    if(!znak) z="-";
-    return z+cecha+","+mantysa;
+    string z1="";
+    if(!znak) z1="-";
+    liczba=z1+cecha+","+mantysa;
 }
 void Liczba::setCecha(string c)
 {
     cecha=c;
+    setLiczba();
 }
 void Liczba::setMantysa(string m)
 {
     mantysa=m;
+    setLiczba();
+    
 }
 void Liczba::setZnak(bool z)
 {
     znak=z;
+    setLiczba();
 }
 void Liczba::ustawPoczWartoscZnaku()
 {
@@ -166,7 +170,7 @@ string wM="", wC="";
             {
                 mxC=x.getCecha();
                 mxM=x.getMantysa();
-                znakW=!x.getZnak();
+                znakW=x.getZnak();
                 mnC=cecha;
                 mnM=mantysa;
             }
@@ -188,7 +192,7 @@ string wM="", wC="";
                                 mxM=x.getMantysa();
                                 mnC=cecha;
                                 mnM=mantysa;
-                                znakW=!x.getZnak();
+                                znakW=x.getZnak();
                             }
                             czyR=true;
                           }
@@ -214,7 +218,7 @@ string wM="", wC="";
                                         mxM=x.getMantysa();
                                         mnC=cecha;
                                         mnM=mantysa;
-                                        znakW=!x.getZnak();
+                                        znakW=x.getZnak();
                                     }
                                     czyR=true;
                                   }
@@ -226,7 +230,7 @@ string wM="", wC="";
                                 mxM=x.getMantysa();
                                 mnC=cecha;
                                 mnM=mantysa;
-                                znakW=!x.getZnak();
+                                znakW=x.getZnak();
                             }
                         }
                         else
@@ -247,7 +251,7 @@ string wM="", wC="";
                                         mxM=x.getMantysa();
                                         mnC=cecha;
                                         mnM=mantysa;
-                                        znakW=!x.getZnak();
+                                        znakW=x.getZnak();
                                     }
                                     czyR=true;
                                   }
@@ -257,7 +261,7 @@ string wM="", wC="";
                             {
                                 mxC=cecha;
                                 mxM=mantysa;
-                                znakW=znak;
+                                znakW=znak; //
                             }
                         }
                     }
@@ -295,7 +299,7 @@ string wM="", wC="";
 			else wC=std::to_string(mxC[j]-mnC[j])+wC;
 
 		}
-
+        if(wC.size()==1 && wC=="0" && wM.size()==1 && wM=="0" ) znakW=true;
         setZnak(znakW);
         setCecha(wC);
         setMantysa(wM);
@@ -380,10 +384,10 @@ void Liczba::usun ()
     for(int i=start;i<cecha.size(); i++) wC+=cecha[i];
     
     start=0;
-    for(int i=(int)mantysa.size()-1;i>=0;i--) {if(mantysa[i]!='0') start=i; break;}
+    for(int i=(int)mantysa.size()-1;i>=0;i--) if(mantysa[i]!='0') {start=i; break;}
     
     
     for(int i=start; i>=0;i--) wM=mantysa[i]+wM;
-    cecha=wC;
-    mantysa=wM;
+    setCecha(wC);
+    setMantysa(wM);
 }
